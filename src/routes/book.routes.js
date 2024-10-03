@@ -113,7 +113,7 @@ router.put("/:id", getBook,async (req, res) => {
 
    //para enviar la actualizacion tengo q mantener los campos completos 
     if(!req.body.title && !req.body.genre && !req.body.author && !req.body.publication_date){
-        res.status(400).json({message:"Los campos tienen que estar completos"})
+     return res.status(400).json({message:"Los campos tienen que estar completos"})
     }
 
   try {
@@ -136,10 +136,10 @@ router.put("/:id", getBook,async (req, res) => {
 router.delete("/:id", getBook, async(req,res)=>{
             
 try {
-    //al no tener if
+    //al no tener if    
     const book=res.book
     //en el parametro _id tenemos el id book
-    await book.deleteOne({_id: book.id})
+    await book.deleteOne({_id: book._id})
     res.json({message: `el libro ${book.title} fue eliminado`})
 
 } catch (error) {
